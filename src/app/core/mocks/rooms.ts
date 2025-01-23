@@ -48,7 +48,7 @@ export const ROOMS_DATA: RoomData[] = [
   {
     id: 9,
     idHotel: 3,
-    code: 'H3R1',
+    code: 'H3R1-T',
     persons: 3,
     available: false,
     active: false,

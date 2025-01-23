@@ -1,7 +1,7 @@
 export const PATH = {
   HOME: 'home',
-  ROUTE_1: 'hotels',
-  ROUTE_2: 'booking',
+  HOTELS: 'hotels',
+  BOOKING: 'booking',
   AUTH: 'auth',
   LOGOUT: 'logout',
 };
@@ -14,12 +14,12 @@ export const ROUTES = [
   },
   {
     label: 'Hoteles',
-    path: `/${PATH.ROUTE_1}`,
+    path: `/${PATH.HOTELS}`,
     private: true,
   },
   {
     label: 'Reservas',
-    path: `/${PATH.ROUTE_2}`,
+    path: `/${PATH.BOOKING}`,
     private: true,
   },
   {

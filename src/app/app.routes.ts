@@ -12,8 +12,18 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       { path: PATH.HOME, component: HomeComponent },
-      { path: PATH.ROUTE_1, component: HomeComponent, canActivate: [authGuard] },
-      { path: PATH.ROUTE_2, component: HomeComponent, canActivate: [authGuard] },
+      {
+        path: PATH.HOTELS,
+        loadComponent: () =>
+          import('./views/hotels-view/hotels-view.component'),
+        canActivate: [authGuard],
+      },
+      {
+        path: PATH.BOOKING,
+        loadComponent: () =>
+          import('./views/booking-view/booking-view.component'),
+        canActivate: [authGuard],
+      },
       { path: PATH.LOGOUT, component: LogoutComponent },
       { path: PATH.AUTH, component: LoginComponent },
       { path: '**', redirectTo: PATH.HOME, pathMatch: 'full' },

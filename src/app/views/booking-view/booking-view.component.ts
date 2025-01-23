@@ -5,13 +5,9 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { TagModule } from 'primeng/tag';
-import { ConfirmationService } from 'primeng/api';
-import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 
 import { ModalFormComponent } from '@components/rooms/modal-form/modal-form.component';
-import { RoomData } from '@interfaces/models';
-import { RoomsService } from '@services/rooms.service';
 import { HotelsService } from '@services/index';
 import { FindHotelNamePipe } from '../../core/pipes/find-hotel-name.pipe';
 import { ReservationService } from '@services/reservation.service';
@@ -22,7 +18,6 @@ import { ReservationService } from '@services/reservation.service';
     TableModule,
     CommonModule,
     ButtonModule,
-    ModalFormComponent,
     TooltipModule,
     TagModule,
     ToastModule,

@@ -23,6 +23,7 @@
       "@constants/*": [ "./src/app/core/constants/*" ],
       "@interfaces/*": [ "./src/app/core/interfaces/*" ],
       "@shared/*": [ "./src/app/shared/*" ],
+      "@components/*": [ "./src/app/components/*" ],
     },
   },
   "angularCompilerOptions": {

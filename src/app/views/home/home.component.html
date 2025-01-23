@@ -1,1 +1,67 @@
-<p>home works!</p>
+<section class="w-full h-auto flex flex-col justify-center">
+  <div class="w-full bg-[#4338ca] h-[197px]">
+    <div class="mx-auto max-w-[1000px]">
+      <div class="mt-8 text-white px-6">
+        <h1 class="text-2xl font-bold leading-tight tracking-tight md:text-4xl">
+          Encuentra tu próxima estancia
+        </h1>
+        <h3 class="mt-4">Busca ofertas en hoteles, casas y mucho más...</h3>
+      </div>
+
+      <div class="mt-16">
+        @if (isSmall) {
+        <div class="border-[3px] border-gold rounded-lg max-w-[80%] mx-auto">
+          <p-button
+            (onClick)="searchTravel()"
+            styleClass="w-full"
+            class="shadow-golden"
+            label="Buscar tu próximo destino"
+          />
+        </div>
+        } @else {
+        <form [formGroup]="form">
+          <div class="flex justify-center gap-2">
+            <div class="border-[3px] border-gold rounded-lg">
+              <p-autocomplete
+                [dropdown]="true"
+                [suggestions]="items"
+                formControlName="destination"
+                (completeMethod)="search($event)"
+                placeholder="A donde vas?"
+              />
+            </div>
+
+            <div class="border-[3px] border-gold rounded-lg">
+              <p-datepicker
+                placeholder="Fecha de llegada"
+                formControlName="dateFrom"
+              />
+            </div>
+
+            <div class="border-[3px] border-gold rounded-lg">
+              <p-datepicker
+                placeholder="Fecha de salida"
+                formControlName="dateTo"
+              />
+            </div>
+
+            <div class="border-[3px] border-gold rounded-lg">
+              <p-button
+                (onClick)="searchTravel()"
+                class="shadow-golden"
+                label="Buscar"
+              />
+            </div>
+          </div>
+        </form>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full mt-16 max-w-[95%] mx-auto">
+    <div class="max-w-[950px]">
+      <app-carrusel-home />
+    </div>
+  </div>
+</section>

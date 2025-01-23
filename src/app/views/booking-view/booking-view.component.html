@@ -15,36 +15,38 @@
     >
       <ng-template #header>
         <tr>
-          <th >Habitación</th>
-          <th >Hotel</th>
-          <th >Fecha Inicio</th>
-          <th >Fecha Fin</th>
-          <th >Invitados</th>
-          <th >Contacto</th>
-          <th >Valor</th>
-          <th >Opciones</th>
+          <th>Habitación</th>
+          <th>Hotel</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th>Invitados</th>
+          <th>Contacto</th>
+          <th>Valor</th>
+          <th>Opciones</th>
         </tr>
       </ng-template>
       <ng-template #body let-room>
         <tr>
           <td>{{ room.roomCode }}</td>
-          <td>{{ room.hotelId | findHotelName: hotelServ.hotels() }}</td>
+          <td>{{ room.hotelId | findHotelName : hotelServ.hotels() }}</td>
           <td>{{ room.checkInDate }}</td>
           <td>{{ room.checkOutDate }}</td>
           <td>{{ room.guests.length }}</td>
           <td>
-            <p >{{ room.emergencyContact.fullName }}</p>
-            <p >{{ room.emergencyContact.phone }}</p>
+            <p>{{ room.emergencyContact.fullName }}</p>
+            <p>{{ room.emergencyContact.phone }}</p>
           </td>
           <td>{{ room.totalCost | currency }}</td>
           <td>
             <div class="flex gap-1">
               <p-button
                 icon="pi pi-search"
-                [rounded]="true" [text]="true"
+                [rounded]="true"
+                [text]="true"
                 pTooltip="Ver Detalles"
                 severity="info"
-                aria-label="Edit"
+                aria-label="See"
+                (onClick)="setData(room)"
               />
             </div>
           </td>
@@ -54,3 +56,11 @@
   </div>
   <div></div>
 </section>
+
+@if(dataModal && showModal) {
+<app-modal-details
+  [data]="dataModal"
+  (closeModal)="closeModal()"
+  [visible]="showModal"
+/>
+}

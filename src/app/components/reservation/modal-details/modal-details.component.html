@@ -1,0 +1,90 @@
+<p-dialog
+  [header]="title"
+  [modal]="true"
+  [(visible)]="visible"
+  (onHide)="onClose()"
+  [style]="{ width: '35rem' }"
+>
+  <div class="flex items-center gap-4 mb-4">
+    <label for="code" class="font-semibold w-32">Código</label>
+    <input
+      pInputText
+      id="code"
+      [ngModel]="data.roomCode"
+      [readonly]="true"
+      class="flex-auto"
+    />
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+    <label for="code" class="font-semibold w-32">Hotel</label>
+    <input
+      pInputText
+      id="code"
+      [ngModel]="data.hotelId | findHotelName : hotelServ.hotels()"
+      [readonly]="true"
+      class="flex-auto"
+    />
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+    <label for="startDate" class="font-semibold w-32">Fecha Inicio</label>
+    <input
+      pInputText
+      id="startDate"
+      [ngModel]="data.checkInDate"
+      [readonly]="true"
+      class="flex-auto"
+    />
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+    <label for="endDate" class="font-semibold w-32">Fecha Salida</label>
+    <input
+    pInputText
+    id="endDate"
+    [ngModel]="data.checkOutDate"
+    [readonly]="true"
+    class="flex-auto"
+  />
+  </div>
+
+  <div class="flex items-center gap-4 mb-4">
+    <label for="endDate" class="font-semibold w-32">Contacto Emergencia</label>
+    <div class="w-full gap-1">
+      <input
+      pInputText
+      [ngModel]="data.emergencyContact.fullName"
+      [readonly]="true"
+      class="flex-auto"
+    />
+    <input
+      pInputText
+      [ngModel]="data.emergencyContact.phone"
+      [readonly]="true"
+      class="flex-auto"
+    />
+    </div>
+  </div>
+
+  <div class="gap-4 mb-4">
+    <h5 class="font-semibold">Visitantes: </h5>
+    <p-accordion [value]="0">
+      @for (tab of data.guests; track tab.documentNumber) {
+          <p-accordion-panel [value]="tab.fullName">
+              <p-accordion-header>{{ tab.fullName }}</p-accordion-header>
+              <p-accordion-content>
+                  <p class="m-1">{{ tab.phone }}</p>
+                  <p class="m-1">{{ tab.birthDate }}</p>
+                  <p class="m-1">{{ tab.email }}</p>
+                  <p class="m-1">{{ tab.gender }}</p>
+              </p-accordion-content>
+          </p-accordion-panel>
+      }
+  </p-accordion>
+  </div>
+
+  <div class="flex justify-end gap-2">
+    <p-button label="Cerrar" severity="secondary" (onClick)="onClose()" />
+  </div>
+</p-dialog>

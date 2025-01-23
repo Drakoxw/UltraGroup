@@ -1,5 +1,6 @@
 export interface ResponseBase<T> {
-  status: 'ok' | 'error';
+  status: number;
+  success: boolean;
   message: string;
   response: T;
 }

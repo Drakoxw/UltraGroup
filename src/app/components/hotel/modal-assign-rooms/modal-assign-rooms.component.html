@@ -1,0 +1,58 @@
+<p-dialog
+  header="ASIGNAR HABITACIONES"
+  [modal]="true"
+  [(visible)]="visible"
+  (onHide)="onClose()"
+  [style]="{ width: '35rem' }"
+>
+  <div class="card mx-6 my-4">
+    <div class="flex justify-between">
+      <h3 class="text-xl">
+        Hotel: <b>{{ hotel.name }}</b>
+      </h3>
+      <p-button
+        label="Guardar"
+        severity="success"
+        [disabled]="selectedRooms.length == 0"
+        (onClick)="save()"
+      />
+    </div>
+    <p-table
+      [value]="listRooms"
+      [loading]="loading()"
+      [paginator]="true"
+      dataKey="id"
+      [(selection)]="selectedRooms"
+      [rows]="10"
+      [tableStyle]="{ 'min-width': '20rem' }"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <ng-template #header>
+        <tr>
+          <th style="width: 25%"></th>
+          <th style="width: 25%">Código</th>
+          <th style="width: 25%">Capacidad/Alforo</th>
+          <th style="width: 25%">Activo</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-room>
+        <tr>
+          <td>
+            <p-tableCheckbox [value]="room" />
+          </td>
+          <td>{{ room.code }}</td>
+          <td>
+            <p class="text-center">{{ room.persons }}</p>
+          </td>
+          <td>
+            @if(room.active){
+            <p-tag severity="success" value="Activa" />
+            } @else {
+            <p-tag severity="danger" value="Inactiva" />
+            }
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</p-dialog>

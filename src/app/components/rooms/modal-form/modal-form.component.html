@@ -1,0 +1,80 @@
+<p-dialog
+  [header]="title"
+  [modal]="true"
+  [(visible)]="visible"
+  (onHide)="onClose()"
+  [style]="{ width: '35rem' }"
+>
+  <form [formGroup]="form">
+    <div class="flex items-center gap-4 mb-2">
+      <label for="active" class="font-semibold w-32">Hotel</label>
+      <p-autocomplete
+        (completeMethod)="filterHotel($event)"
+        [suggestions]="hoterList"
+        [dropdown]="true"
+        field="name"
+        styleClass="w-full"
+        class="w-full"
+        formControlName="idHotel"
+      />
+    </div>
+    <div class="flex items-center gap-4 mb-2">
+      <label for="active" class="font-semibold w-32">Tipo de Habitacion</label>
+      <p-autocomplete
+        [suggestions]="types"
+        [dropdown]="true"
+        (completeMethod)="filter($event)"
+        field="label"
+        styleClass="w-full"
+        class="w-full"
+        formControlName="type"
+    />
+    </div>
+    <div class="flex gap-4 w-full">
+      <div class="flex w-6/12 items-center gap-4 mb-2">
+        <label for="active" class="font-semibold w-32">Activo</label>
+        <p-checkbox formControlName="active" [binary]="true" inputId="active" />
+      </div>
+      <div class="flex w-6/12 items-center gap-4 mb-2">
+        <label for="available" class="font-semibold w-32">Disponible</label>
+        <p-checkbox
+          formControlName="available"
+          [binary]="true"
+          inputId="available"
+        />
+      </div>
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+      <label for="code" class="font-semibold w-32">Codigo / Habitación</label>
+      <input formControlName="code" pInputText id="code" class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="tax" class="font-semibold w-24">Impuesto</label>
+      <p-inputnumber
+        inputId="integeronly"
+        formControlName="tax"
+        class="flex-auto"
+      />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="cost" class="font-semibold w-24">Costo Base</label>
+      <p-inputnumber
+        inputId="integeronly"
+        formControlName="cost"
+        class="flex-auto"
+      />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="persons" class="font-semibold w-24">Capacidad / Alforo</label>
+      <p-inputnumber
+        inputId="integeronly"
+        formControlName="persons"
+        class="flex-auto"
+      />
+    </div>
+  </form>
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancel" severity="secondary" (onClick)="onClose()" />
+    <p-button label="Save" [disabled]="form.invalid" (onClick)="onSave()" />
+  </div>
+</p-dialog>

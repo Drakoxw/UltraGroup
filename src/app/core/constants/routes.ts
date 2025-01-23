@@ -2,6 +2,7 @@ export const PATH = {
   HOME: 'home',
   HOTELS: 'hotels',
   BOOKING: 'booking',
+  ROOMS: 'hotel-rooms',
   AUTH: 'auth',
   LOGOUT: 'logout',
 };
@@ -15,6 +16,11 @@ export const ROUTES = [
   {
     label: 'Hoteles',
     path: `/${PATH.HOTELS}`,
+    private: true,
+  },
+  {
+    label: 'Habitaciones',
+    path: `/${PATH.ROOMS}`,
     private: true,
   },
   {

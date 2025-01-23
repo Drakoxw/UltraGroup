@@ -1,0 +1,42 @@
+<p-dialog
+  [header]="title"
+  [modal]="true"
+  [(visible)]="visible"
+  (onHide)="onClose()"
+  [style]="{ width: '35rem' }"
+>
+  <form [formGroup]="form">
+    <div class="flex items-center gap-4 mb-2">
+      <label for="stars" class="font-semibold w-32">Estrellas</label>
+      <p-rating formControlName="stars" />
+    </div>
+    <div class="flex items-center gap-4 mb-2">
+      <label for="active" class="font-semibold w-32">Activo</label>
+      <p-checkbox formControlName="active" [binary]="true" inputId="active" />
+    </div>
+    <div class="flex items-center gap-4 mb-4">
+      <label for="name" class="font-semibold w-32">Nombre</label>
+      <input formControlName="name" pInputText id="name" class="flex-auto"  />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="location" class="font-semibold w-32">Ubicación</label>
+      <input formControlName="location" pInputText id="location" class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="numberOfRooms" class="font-semibold w-30">Habitaciones</label>
+      <p-inputnumber inputId="integeronly" formControlName="numberOfRooms" class="flex-auto" />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="phone" class="font-semibold w-32">Telefono</label>
+      <input formControlName="phone" pInputText id="phone" class="flex-auto"  />
+    </div>
+    <div class="flex items-center gap-4 mb-8">
+      <label for="description" class="font-semibold w-32">Descripción</label>
+      <textarea [fluid]="true" rows="5" cols="30" pTextarea formControlName="description"></textarea>
+    </div>
+  </form>
+  <div class="flex justify-end gap-2">
+    <p-button label="Cancel" severity="secondary" (onClick)="onClose()" />
+    <p-button label="Save" [disabled]="form.invalid" (onClick)="onSave()" />
+  </div>
+</p-dialog>

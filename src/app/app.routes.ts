@@ -24,6 +24,12 @@ export const routes: Routes = [
           import('./views/booking-view/booking-view.component'),
         canActivate: [authGuard],
       },
+      {
+        path: PATH.ROOMS,
+        loadComponent: () =>
+          import('./views/hotel-rooms-view/hotel-rooms-view.component'),
+        canActivate: [authGuard],
+      },
       { path: PATH.LOGOUT, component: LogoutComponent },
       { path: PATH.AUTH, component: LoginComponent },
       { path: '**', redirectTo: PATH.HOME, pathMatch: 'full' },

@@ -1,12 +1,12 @@
 <section class="w-full h-full p-6">
   <h1 class="text-2xl font-bold leading-tight tracking-tight md:text-4xl">
-    LISTADO DE HOTELES
+    LISTADO DE HABITACIONES
   </h1>
 
   <div class="flex justify-end">
     <p-button
       (onClick)="showModal = true"
-      label="Nuevo"
+      label="Nueva"
       icon="pi pi-plus"
       severity="success"
       iconPos="right"
@@ -18,63 +18,57 @@
       [value]="list()"
       [loading]="loading()"
       [paginator]="true"
+      [rows]="10"
       stripedRows
-      [rows]="3"
       [tableStyle]="{ 'min-width': '50rem' }"
-      [rowsPerPageOptions]="[3, 5, 10]"
+      [rowsPerPageOptions]="[5, 10, 20]"
     >
       <ng-template #header>
         <tr>
-          <th style="width: 25%">Nombre</th>
-          <th style="width: 25%">Ubicación</th>
-          <th style="width: 25%">Estrellas</th>
-          <th style="width: 25%">Habitaciones</th>
+          <th style="width: 25%">Código</th>
+          <th style="width: 25%">Hotel</th>
+          <th style="width: 25%">Capacidad/Alforo</th>
+          <th style="width: 25%">Disponible</th>
           <th style="width: 25%">Activo</th>
           <th style="width: 25%">Opciones</th>
         </tr>
       </ng-template>
-      <ng-template #body let-hotel>
+      <ng-template #body let-room>
         <tr>
-          <td>{{ hotel.name }}</td>
-          <td>{{ hotel.location }}</td>
+          <td>{{ room.code }}</td>
+          <td>{{ room.idHotel | findHotelName: hotelServ.hotels() }}</td>
+          <td><p class="text-center">{{ room.persons }}</p></td>
           <td>
-            <p-rating [stars]="hotel.stars" [readonly]="true" />
-          </td>
-          <td>{{ hotel.numberOfRooms }}</td>
-          <td>
-            @if(hotel.active){
-            <p-tag severity="success" value="Activo" />
+            @if(room.available){
+            <p-tag severity="success" value="Disponible" />
             } @else {
-            <p-tag severity="danger" value="Inactivo" />
+            <p-tag severity="info" value="Ocupada" />
             }
           </td>
           <td>
-            <div class="flex justify-center gap-1">
-              @if(hotel.active) {
-                <p-button
-                  icon="pi pi-plus-circle"
-                  pTooltip="Asignar Habitaciones"
-                  aria-label="Active"
-                  [rounded]="true" [text]="true"
-                  severity="success"
-                  (onClick)="onAssing(hotel)"
-                />
-              }
+            @if(room.active){
+            <p-tag severity="success" value="Activa" />
+            } @else {
+            <p-tag severity="danger" value="Inactiva" />
+            }
+          </td>
+          <td>
+            <div class="flex gap-1">
               <p-button
                 icon="pi pi-exclamation-circle"
-                [pTooltip]="hotel.active ? 'Desactivar Hotel' : 'Activar Hotel'"
+                [pTooltip]="room.active ? 'Desactivar Habitación' : 'Activar Habitación'"
                 aria-label="Active"
                 [rounded]="true" [text]="true"
                 severity="danger"
-                (onClick)="onToggleActive(hotel.id, hotel.active, $event)"
+                (onClick)="onToggleActive(room.id, room.active, $event)"
               />
               <p-button
                 icon="pi pi-pen-to-square"
                 [rounded]="true" [text]="true"
-                pTooltip="Editar Hotel"
+                pTooltip="Editar Habitación"
                 severity="info"
                 aria-label="Edit"
-                (onClick)="onEdit(hotel)"
+                (onClick)="onEdit(room)"
               />
             </div>
           </td>
@@ -82,20 +76,13 @@
       </ng-template>
     </p-table>
   </div>
+  <div></div>
 </section>
-
-@if (showModalAssing && hotelAssing) {
-  <app-modal-assign-rooms
-    [visible]="showModalAssing"
-    [hotel]="hotelAssing"
-    (closeModal)="onCloseModal()"
-  />
-}
 
 @if (showModal) {
   <app-modal-form
     [visible]="showModal"
-    [data]="hotelEdit"
+    [data]="roomEdit"
     (closeModal)="onCloseModal()"
   />
 }
@@ -111,3 +98,4 @@
       </div>
   </ng-template>
 </p-confirmpopup>
+

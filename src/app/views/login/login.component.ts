@@ -61,7 +61,7 @@ export class LoginComponent {
         next: (res) => {
           if (!res.error && res.data && res.data.token) {
             this.#toastAlert.success(res.msg, 'Bienvenido...  😁',);
-            this.#router.navigate([PATH.HOME]);
+            this.#router.navigate([PATH.BOOKING]);
             return
           }
           this.#toastAlert.error(res.msg);

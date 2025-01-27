@@ -1,5 +1,5 @@
 <section class="w-full h-auto flex flex-col justify-center">
-  <div class="w-full bg-[#4338ca] h-[197px]">
+  <div class="w-full bg-[#4338ca] h-[210px] lg:h-[170px]">
     <div class="mx-auto max-w-[1000px]">
       <div class="mt-8 text-white px-6">
         <h1 class="text-2xl font-bold leading-tight tracking-tight md:text-4xl">
@@ -8,60 +8,127 @@
         <h3 class="mt-4">Busca ofertas en hoteles, casas y mucho más...</h3>
       </div>
 
-      <div class="mt-16">
-        @if (isSmall) {
-        <div class="border-[3px] border-gold rounded-lg max-w-[80%] mx-auto">
-          <p-button
-            (onClick)="searchTravel()"
-            styleClass="w-full"
-            class="shadow-golden"
-            label="Buscar tu próximo destino"
-          />
-        </div>
-        } @else {
-        <form [formGroup]="form">
-          <div class="flex justify-center gap-2">
-            <div class="border-[3px] border-gold rounded-lg">
-              <p-autocomplete
-                [dropdown]="true"
-                [suggestions]="items"
-                formControlName="destination"
-                (completeMethod)="search($event)"
-                placeholder="A donde vas?"
-              />
+      <div class="mt-4">
+        <form [formGroup]="form" class="p-4">
+          <div class="flex flex-col md:flex-row justify-center gap-5">
+            <div
+              class="flex flex-col lg:flex-row justify-center gap-5 w-full lg:!w-auto"
+            >
+              <div
+                class="border-[3px] relative rounded-lg"
+                [ngClass]="[
+                  destination.error ? 'border-red-500' : 'border-gold'
+                ]"
+              >
+                <p-floatlabel>
+                  <p-autocomplete
+                    [dropdown]="true"
+                    [suggestions]="cities"
+                    field="nombre"
+                    formControlName="destination"
+                    inputId="destination"
+                    (completeMethod)="search($event)"
+                    styleClass="w-full"
+                    class="w-full"
+                  />
+                  <label class="!text-gold" for="destination"
+                    >A donde vas?</label
+                  >
+                </p-floatlabel>
+                @if (destination.error) {
+                <p class="text-sm absolute text-red-700">
+                  {{ destination.validateError }}
+                </p>
+                }
+              </div>
+
+              <div
+                class="border-[3px] relative rounded-lg"
+                [ngClass]="[dates.error ? 'border-red-500' : 'border-gold']"
+              >
+                <p-floatlabel>
+                  <p-datepicker
+                    formControlName="dates"
+                    selectionMode="range"
+                    [minDate]="minDate"
+                    inputId="date"
+                    styleClass="w-full"
+                    class="w-full"
+                  />
+                  <label class="!text-gold" for="date"
+                    >Fecha desde y hasta</label
+                  >
+                </p-floatlabel>
+                @if (dates.error) {
+                <p class="text-sm absolute text-red-700">
+                  {{ dates.validateError }}
+                </p>
+                }
+              </div>
             </div>
 
-            <div class="border-[3px] border-gold rounded-lg">
-              <p-datepicker
-                placeholder="Fecha de llegada"
-                formControlName="dateFrom"
-              />
-            </div>
+            <div
+              class="flex flex-col lg:flex-row justify-center gap-5 w-full lg:!w-auto"
+            >
+              <div
+                class="border-[3px] relative rounded-lg min-w-[252px]"
+                [ngClass]="[people.error ? 'border-red-500' : 'border-gold']"
+                (click)="setPeopleOptions()"
+              >
+                <p-floatlabel class="w-full">
+                  <p-select
+                    inputId="peopleI"
+                    [options]="peopleOptions"
+                    optionLabel="label"
+                    (onChange)="setValue($event)"
+                    (onBlur)="form.controls['people'].markAsTouched()"
+                    styleClass="w-full"
+                    class="w-full"
+                  />
+                  <label class="!text-gold" for="peopleI"
+                    >Cuantas personas?</label
+                  >
+                </p-floatlabel>
+                @if (people.error) {
+                <p class="text-sm absolute text-red-700">
+                  {{ people.validateError }}
+                </p>
+                }
+              </div>
 
-            <div class="border-[3px] border-gold rounded-lg">
-              <p-datepicker
-                placeholder="Fecha de salida"
-                formControlName="dateTo"
-              />
-            </div>
-
-            <div class="border-[3px] border-gold rounded-lg">
-              <p-button
-                (onClick)="searchTravel()"
-                class="shadow-golden"
-                label="Buscar"
-              />
+              <div class="border-[3px] border-gold rounded-lg">
+                <p-button
+                  [disabled]="form.invalid && form.touched"
+                  (onClick)="searchTravel()"
+                  styleClass="w-full"
+                  class="w-full"
+                  label="Buscar"
+                />
+              </div>
             </div>
           </div>
         </form>
-        }
+
+        <div class="w-full mt-4 flex justify-center max-w-[95%] mx-auto">
+          <div class="max-w-[950px] w-[90%]">
+            <app-carrusel-home />
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="w-full mt-16 flex justify-center max-w-[95%] mx-auto">
-    <div class="max-w-[950px]">
+  <!-- <div class="w-full mt-16 flex justify-center max-w-[95%] mx-auto">
+    <div class="max-w-[950px] w-[90%]">
       <app-carrusel-home />
     </div>
-  </div>
+  </div> -->
 </section>
+
+@if (showModal) {
+<app-modal-select-room
+  [visible]="showModal"
+  [peopleCount]="peopleCount"
+  (closeModal)="showModal = false"
+/>
+}

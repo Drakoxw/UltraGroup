@@ -1,0 +1,54 @@
+<div class="w-full h-full flex flex-col justify-center items-center">
+
+  <div class="flex justify-center items-center">
+    <div class="bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg rounded-lg w-96 p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div class="text-xl font-semibold">
+          Nombre de la Tarjeta
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.328 0l.41 1.378 40.8-11.16q4.123 1.131 5.59 7.6l-2.96 2.151 q2.947 3.09 4.073 7.103L24 4.446 12.002 19.729zm-9.328 1.822q4.94 4.186 7.26 9.4l3.53-1.679q2.947 5.091 7.04 12.146L0 28.871z">
+          </path>
+          </svg>
+      </div>
+    </div>
+      <div class="text-2xl mb-4">
+        1234 5678 9012 3456
+      </div>
+      <div class="mb-6">
+        <div class="text-lg">
+          <span class="mr-2">1234</span>
+          <span class="mr-2">5678</span>
+          <span class="mr-2">9012</span>
+          <span>3456</span>
+        </div>
+      </div>
+      <div class="flex justify-between items-center">
+        <div>
+          <div>Nombre del Titular</div>
+          <div class="text-sm">VALIDEZ: 12/34</div>
+        </div>
+        <div class="flex items-center">
+          <div class="mr-4">
+            <div class="font-bold">VISA</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3.5 1.5h4l1 2h10l1-2h4v7h-20zm21 2h1v5h-1v-5zm-1 0h1v5h-1v-5z"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="w-full mt-6 flex justify-end mx-4 md:mx-24">
+    <p-button
+    (onClick)="onSave()"
+    label="Confirmar pago y Guardar"
+    severity="success"
+  />
+  </div>
+
+
+</div>

@@ -46,12 +46,6 @@ export class ModalDetailsComponent {
   @Input() title = 'Detalle de la Reservación';
   @Input() data!: Reservation;
 
-  tabs = [
-    { title: 'Title 1', content: 'Content 1', value: '0' },
-    { title: 'Title 2', content: 'Content 2', value: '1' },
-    { title: 'Title 3', content: 'Content 3', value: '2' },
-  ];
-
   readonly hotelServ = inject(HotelsService);
 
   onClose() {

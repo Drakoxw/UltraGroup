@@ -1,0 +1,31 @@
+<section class="w-full h-full mt-6 mb-12">
+  <form [formGroup]="form">
+    <div class="card flex flex-wrap justify-center gap-6">
+
+      <div class="flex flex-wrap justify-center gap-4">
+        <p-floatlabel>
+          <input
+            class="w-input"
+            formControlName="fullName"
+            pInputText
+            id="fullName"
+          />
+          <label for="fullName">Nombre Completo</label>
+        </p-floatlabel>
+
+        <p-floatlabel>
+          <p-inputmask mask="999-999-9999" formControlName="phone" id="phone" />
+          <label for="phone">Telefono</label>
+        </p-floatlabel>
+      </div>
+    </div>
+    <div class="w-full mt-4 px-4 md:px-24 flex justify-end">
+      <p-button
+        [disabled]="form.invalid && form.touched"
+        (onClick)="onSave()"
+        label="Guardar"
+        severity="success"
+      />
+    </div>
+  </form>
+</section>

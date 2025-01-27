@@ -1,0 +1,97 @@
+<section class="w-full h-full mt-6 mb-12">
+  <form [formGroup]="form">
+    <div class="card flex flex-wrap justify-center gap-5">
+      <div class="flex flex-wrap justify-center gap-5">
+        <p-floatlabel>
+          <input formControlName="name" class="w-input" pInputText id="name" />
+          <label for="name">Nombres</label>
+        </p-floatlabel>
+
+        <p-floatlabel>
+          <input
+            formControlName="lastname"
+            [ngClass]="this.form.get('lastname') | formControlErrorClass"
+            class="w-input"
+            pInputText
+            id="lastname"
+          />
+          <label for="lastname">Apellidos</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-5">
+        <p-floatlabel>
+          <p-datepicker
+            class="w-input"
+            formControlName="birthDate"
+            id="birthDate"
+            showIcon
+            iconDisplay="input"
+          />
+          <label for="birthDate">Nacimiento</label>
+        </p-floatlabel>
+
+        <p-floatlabel>
+          <p-select
+            class="w-input"
+            (onChange)="onValidateVoid('gender')"
+            formControlName="gender"
+            [options]="genderOptions"
+            id="gender"
+            optionLabel="label"
+          />
+          <label for="gender">Género</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-5">
+        <p-floatlabel>
+          <p-select
+            class="w-input"
+            (onChange)="onValidateVoid('documentType')"
+            formControlName="documentType"
+            id="documentType"
+            [options]="documentOptions"
+            optionLabel="label"
+          />
+          <label for="documentType">Tipo Documento</label>
+        </p-floatlabel>
+
+        <p-floatlabel>
+          <p-inputnumber
+            class="w-input"
+            formControlName="documentNumber"
+            id="documentNumber"
+          />
+          <label for="documentNumber">Número Documento</label>
+        </p-floatlabel>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-5">
+        <p-floatlabel>
+          <input
+            type="email"
+            class="w-input"
+            formControlName="email"
+            pInputText
+            id="email"
+          />
+          <label for="email">Correo</label>
+        </p-floatlabel>
+
+        <p-floatlabel>
+          <p-inputmask mask="999-999-9999" formControlName="phone" id="phone" />
+          <label for="phone">Telefono</label>
+        </p-floatlabel>
+      </div>
+    </div>
+    <div class="w-full mt-4 px-4 md:px-24 flex justify-end">
+      <p-button
+        [disabled]="form.invalid && form.touched"
+        (onClick)="onSave()"
+        label="Guardar"
+        severity="success"
+      />
+    </div>
+  </form>
+</section>

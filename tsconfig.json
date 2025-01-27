@@ -22,6 +22,7 @@
       "@utils/*": [ "./src/app/shared/utils/*" ],
       "@constants/*": [ "./src/app/core/constants/*" ],
       "@interfaces/*": [ "./src/app/core/interfaces/*" ],
+      "@validators/*": [ "./src/app/core/validators/*" ],
       "@shared/*": [ "./src/app/shared/*" ],
       "@components/*": [ "./src/app/components/*" ],
     },

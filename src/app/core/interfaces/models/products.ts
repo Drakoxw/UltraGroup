@@ -1,5 +1,6 @@
 export interface Product {
   id: number;
+  hotelId: number,
   code: string;
   name: string;
   description: string;

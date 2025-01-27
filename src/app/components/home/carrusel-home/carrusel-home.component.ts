@@ -31,7 +31,7 @@ export class CarruselHomeComponent implements OnInit {
       this.numVisible = 1;
       this.numScroll = 1;
     }
-    if (window.innerWidth > 450) {
+    if (window.innerWidth > 550) {
       this.numVisible = 2;
       this.numScroll = 2;
     }

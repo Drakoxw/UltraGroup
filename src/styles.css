@@ -15,6 +15,14 @@ html {
   font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI',
 }
 
+app-form-create-reservation .p-inputmask {
+  width: 235px!important;
+}
+
+
+app-form-create-reservation p-select {
+  min-height: 40px!important;
+}
 
 .p-button {
   padding: 5px 10px;

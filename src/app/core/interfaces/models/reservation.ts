@@ -1,5 +1,4 @@
-export interface Reservation {
-  id: number;
+export interface ReservationForm {
   hotelId: number;
   roomId: number;
   roomCode: string;
@@ -8,6 +7,10 @@ export interface Reservation {
   guests: Guest[];
   emergencyContact: EmergencyContact;
   totalCost: number;
+}
+
+export interface Reservation extends ReservationForm {
+  id: number;
 }
 
 export interface Guest {
@@ -23,4 +26,11 @@ export interface Guest {
 export interface EmergencyContact {
   fullName: string;
   phone: string;
+}
+
+export interface DestinationAndCheck {
+  destination: string;
+  people: number;
+  dateFrom: string;
+  dateTo: string;
 }

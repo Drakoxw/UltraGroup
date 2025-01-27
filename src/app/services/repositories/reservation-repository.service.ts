@@ -11,11 +11,12 @@ import { ResponseBase } from '@interfaces/index';
 export class ReservationRepositoryService {
 
   list(): Observable<ResponseBase<Reservation[]>> {
+    const list = [...RESERVATIONS].reverse()
     const response: ResponseBase<Reservation[]> = {
       status: 200,
       success: true,
       message: 'se encontraron datos',
-      response: RESERVATIONS.sort((a, b) => b.id - a.id),
+      response: list,
     };
 
     const randomDelay = Math.floor(Math.random() * 1000);
